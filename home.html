@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <title>House Price Prediction</title>
+    <link rel="stylesheet" href="https://cdn.jsdelivr.net/npm/bootstrap@4.3.1/dist/css/bootstrap.min.css" integrity="sha384-ggOyR0iXCbMQv3Xipma34MD+dH/1fQ784/j6cY/iJTQUOhcWr7x9JvoRxT2MZw1T" crossorigin="anonymous">
+    <style>
+        .prediction-box {
+            border: 2px solid #007bff; /* Blue border */
+            padding: 15px;
+            border-radius: 5px;
+            background-color: #f8f9fa; /* Light gray background */
+            margin-top: 20px;
+            text-align: center;
+        }
+        .prediction {
+            color: red;
+            font-size: 2.2em;
+        }
+    </style>
+</head>
+<body>
+    <center>
+        <br>
+        <br>
+        <h2>House Price Prediction</h2>
+        <br>
+    </center>
+    <!-----------form start------------------->
+    <div class="container d-flex align-items-center justify-content-center">
+        <form method="post" action="/predict" class="w-50">
+            <div class="form-group">
+                <label for="area">Area size (in square feet):</label>
+                <input type="number" class="form-control" name="area" id="area" placeholder="Enter Area" required>
+            </div>
+            <div class="form-group">
+                <label for="bedrooms">Number of Bedrooms:</label>
+                <input type="number" class="form-control" name="bedrooms" id="bedrooms" required>
+            </div>
+            <div class="form-group">
+                <label for="age">Age of House (in years):</label>
+                <input type="number" class="form-control" name="age" id="age" required>
+            </div>
+            <input type="submit" value="Predict Price" class="btn btn-primary">
+        </form>
+    </div>
+    <!---------form end------------------>
+    
+    <div class="container d-flex align-items-center justify-content-center">
+        <div class="prediction-box">
+            <div class="prediction">
+                {{ prediction_text }}
+            </div>
+            {% if input_details %}
+            <div class="input-details">
+                <p>Input Details:</p>
+                <p>Area: {{ input_details.area }} sq ft</p>
+                <p>Bedrooms: {{ input_details.bedrooms }}</p>
+                <p>Age: {{ input_details.age }} years</p>
+            </div>
+            {% endif %}
+        </div>
+    </div>
+</body>
+</html>
